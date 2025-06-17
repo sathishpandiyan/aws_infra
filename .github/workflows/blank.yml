@@ -41,6 +41,6 @@ jobs:
           aws s3 ls                      # Example AWS command
           aws s3 sync . s3://sas-github-workflow --delete
       
-      - name: verify AWS credentials
-        run:  aws sts get-caller-identity
+      # - name: verify AWS credentials
+      #   run:  aws sts get-caller-identity
 
