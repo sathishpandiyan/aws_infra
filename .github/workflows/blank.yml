@@ -10,8 +10,8 @@ on:
         description: "AWS Region"
         required: true
         # default: "      "
-permissions:
-  id-token: write # This is required for requesting the JWT
+# permissions:
+#   id-token: write # This is required for requesting the JWT
 jobs:
   deploy:
     runs-on: ubuntu-latest
