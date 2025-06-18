@@ -34,22 +34,22 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: ./aws_infra  # ✅ Updated path
+        working-directory: .  # ✅ Updated path
 
       - name: Terraform Validate
         run: terraform validate
-        working-directory: ./aws_infra
+        working-directory: .
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: ./aws_infra
+        working-directory: .
 
       - name: List files for debugging
         run: ls -R
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: ./aws_infra
+        working-directory: .
 
       # - name: Configure AWS Credentials
       #   uses: aws-actions/configure-aws-credentials@v4
