@@ -2,7 +2,7 @@ name: Terraform Cleanup job
 
 on:
   workflow_dispatch:
-    
+
 permissions:
   id-token: write   # This is required for requesting the JWT
   contents: read    # This is required for actions/checkout
@@ -21,6 +21,9 @@ jobs:
         role-to-assume: arn:aws:iam::043309359569:role/OIDC_Github_access
         role-session-name: OIDC_Github_access
         aws-region: "us-east-1"
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
 
     - name: 'Terraform Init'
       run: terraform init
