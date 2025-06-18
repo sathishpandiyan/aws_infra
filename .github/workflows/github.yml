@@ -6,10 +6,15 @@ on:
       - main  # Change this to your target branch
   workflow_dispatch:  # 👈 Adds manual trigger option
     inputs:
-      region:
-        description: "AWS Region"
-        required: true
-        # default: "      "
+      destroy:
+        description: "Set to true to destroy infra"
+        required: false
+        default: "false"
+
+      # region:
+      #   description: "AWS Region"
+      #   required: true
+      #   # default: "      "
  
 permissions:
   id-token: write   # This is required for requesting the JWT
