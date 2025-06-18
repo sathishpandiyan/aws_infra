@@ -9,7 +9,7 @@ on:
       destroy:
         description: "Set to true to destroy infra"
         required: false
-        default: "false"
+        default: "true"
 
       # region:
       #   description: "AWS Region"
