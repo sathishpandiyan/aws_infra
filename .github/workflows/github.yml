@@ -34,15 +34,15 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: ./ec2.tf  # ✅ Updated path
+        working-directory: ec2.tf  # ✅ Updated path
 
       - name: Terraform Validate
         run: terraform validate
-        working-directory: ./ec2.tf
+        working-directory: ec2.tf
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: ./ec2.tf
+        working-directory: ec2.tf
 
       # - name: Terraform Apply
       #   run: terraform apply -auto-approve
