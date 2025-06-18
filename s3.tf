@@ -1,8 +1,8 @@
 resource "aws_s3_bucket" "example" {
-  bucket = "your-unique-bucket-name"
+  bucket = "tf_sas"
 
   tags = {
-    Name        = "My S3 Bucket"
+    Name        = "tf_sas"
     Environment = "Dev"
   }
 }
