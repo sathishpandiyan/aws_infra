@@ -10,7 +10,7 @@ resource "aws_instance" "example" {
   key_name = "th"  # Replace with your key pair name
 
   tags = {
-    Name = "Example EC2 Instance"
+    Name = "Launched using Terraform"
   }
 }
 
