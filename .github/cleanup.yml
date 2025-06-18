@@ -1,0 +1,62 @@
+name: Deploy to AWS
+
+on:
+  push:
+    branches:
+      - main  # Change this to your target branch
+  workflow_dispatch:  # 👈 Adds manual trigger option
+    inputs:
+      destroy:
+        description: "Set to true to destroy infra"
+        required: false
+        default: "false"
+
+      # region:
+      #   description: "AWS Region"
+      #   required: true
+      #   # default: "      "
+ 
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+
+jobs: 
+  terraform-cleanup:
+    name: Post Apply Cleanup
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
+        with:
+          role-to-assume: arn:aws:iam::043309359569:role/OIDC_Github_access
+          role-session-name: OIDC_Github_access
+          aws-region: "us-east-1"
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan Destroy
+        run: terraform plan -destroy -out=tfplan-destroy
+
+      - name: Terraform Apply Destroy
+        run: terraform apply -auto-approve tfplan-destroy
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        working-directory: .
+
+      # - name: Terraform Destroy
+      #   if: github.event_name == 'workflow_dispatch' && github.event.inputs.destroy == 'true'
+      #   run: terraform destroy -auto-approve
+      #   working-directory: .
+
+
+     
+
