@@ -32,24 +32,24 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
-      - name: Terraform Init
-        run: terraform init
-        working-directory: .  # ✅ Updated path
+      # - name: Terraform Init
+      #   run: terraform init
+      #   working-directory: .  # ✅ Updated path
 
-      - name: Terraform Validate
-        run: terraform validate
-        working-directory: .
+      # - name: Terraform Validate
+      #   run: terraform validate
+      #   working-directory: .
 
-      - name: Terraform Plan
-        run: terraform plan
-        working-directory: .
+      # - name: Terraform Plan
+      #   run: terraform plan
+      #   working-directory: .
 
-      - name: List files for debugging
-        run: ls -R
+      # - name: List files for debugging
+      #   run: ls -R
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
-        working-directory: .
+      # - name: Terraform Apply
+      #   run: terraform apply -auto-approve
+      #   working-directory: .
 
       - name: Terraform Destroy
         if: github.event.inputs.destroy == 'true'
