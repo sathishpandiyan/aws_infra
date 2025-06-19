@@ -7,7 +7,7 @@ variable "create_ec2" {
 }
 
 variable "create_sg" {
-  default = false
+  default = true
 }
 
 resource "aws_instance" "example" {
