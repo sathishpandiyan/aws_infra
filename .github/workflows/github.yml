@@ -46,7 +46,7 @@ jobs:
         working-directory: .
  
       - name: Terraform Import SG
-        run: terraform import aws_security_group.allow_tls sg-00989ffbe655f1f2b || echo "SG already imported or doesn't exist"
+        run: terraform import aws_security_group.allow_tls[0] sg-00989ffbe655f1f2b || echo "SG already imported or doesn't exist"
 
       - name: Terraform Plan
         run: terraform plan
