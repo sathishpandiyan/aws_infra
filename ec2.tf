@@ -10,6 +10,23 @@ variable "create_sg" {
   default = true
 }
 
+resource "aws_dynamodb_table" "terraform_locks" {
+  name         = "terraform-locks"             # 👈 This name is referenced in backend
+  billing_mode = "PAY_PER_REQUEST"             # On-demand pricing (no capacity worries)
+  hash_key     = "LockID"                      # Required key
+
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+
+  tags = {
+    Name        = "Terraform State Lock Table"
+    Environment = "Dev"
+  }
+}
+
+
 resource "aws_instance" "example" {
   count                  = var.create_ec2 ? 1 : 0
   ami                    = "ami-09e6f87a47903347c"  # Replace with your desired AMI ID
