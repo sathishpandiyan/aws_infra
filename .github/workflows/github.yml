@@ -45,8 +45,8 @@ jobs:
         run: terraform validate
         working-directory: .
  
-      - name: Terraform Import SG
-        run: terraform import aws_security_group.allow_tls[0] sg-00989ffbe655f1f2b || echo "SG already imported or doesn't exist"
+      # - name: Terraform Import SG
+      #   run: terraform import aws_security_group.allow_tls[0] sg-00989ffbe655f1f2b || echo "SG already imported or doesn't exist"
 
       - name: Terraform Plan
         run: terraform plan
@@ -55,9 +55,9 @@ jobs:
       - name: List files for debugging
         run: ls -R
 
-      # - name: Terraform Apply
-      #   run: terraform apply -auto-approve
-      #   working-directory: .
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        working-directory: .
 
       # - name: Terraform Destroy
       #   if: github.event_name == 'workflow_dispatch' && github.event.inputs.destroy == 'true'
