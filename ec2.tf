@@ -6,6 +6,10 @@ variable "create_ec2" {
   default = false
 }
 
+variable "create_sg"  {
+  default = false
+}
+
 resource "aws_instance" "example" {
   count         = var.create_ec2 ? 1 : 0
   ami                    = "ami-09e6f87a47903347c"  # Replace with your desired AMI ID
@@ -20,6 +24,7 @@ resource "aws_instance" "example" {
 }
 
 resource "aws_security_group" "allow_tls" {
+  count       = var.create_sg ? 1 : 0
   name        = "allow_tls_tf"
   description = "Allow TLS inbound traffic"
 
