@@ -55,9 +55,23 @@ jobs:
       - name: List files for debugging
         run: ls -R
 
+      - name: "Before Terraform - Check Lock Table"
+        run: |
+          aws dynamodb get-item \
+            --table-name terraform-locks \
+            --key '{"LockID": {"S": "dev/terraform.tfstate"}}' \
+            --region us-east-1 || echo "No active lock"
+
       - name: Terraform Apply
         run: terraform apply -auto-approve
         working-directory: .
+
+      - name: "After Terraform - Check Lock Table"
+        run: |
+          aws dynamodb get-item \
+            --table-name terraform-locks \
+            --key '{"LockID": {"S": "dev/terraform.tfstate"}}' \
+            --region us-east-1 || echo "Lock released"
 
       # - name: Terraform Destroy
       #   if: github.event_name == 'workflow_dispatch' && github.event.inputs.destroy == 'true'
