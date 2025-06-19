@@ -2,7 +2,12 @@ provider "aws" {
   region = "us-east-1"  # Replace with your desired region
 }
 
+variable "create_ec2" {
+  default = false
+}
+
 resource "aws_instance" "example" {
+  count         = var.create_ec2 ? 1 : 0
   ami                    = "ami-09e6f87a47903347c"  # Replace with your desired AMI ID
   instance_type          = "t2.micro"              # Replace with your desired instance type
   subnet_id              = "subnet-0f149193d192149f1" # Replace with your subnet ID
