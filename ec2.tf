@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 variable "create_ec2" {
-  default = false
+  default = true
 }
 
 variable "create_sg" {
