@@ -30,7 +30,7 @@ resource "aws_dynamodb_table" "terraform_locks" {
 resource "aws_instance" "example" {
   count                  = var.create_ec2 ? 1 : 0
   ami                    = "ami-09e6f87a47903347c"  # Replace with your desired AMI ID
-  instance_type          = "t2.micro"              # Replace with your desired instance type
+  instance_type          = "t2.small"              # Replace with your desired instance type
   subnet_id              = "subnet-0f149193d192149f1" # Replace with your subnet ID
   #vpc_security_group_ids = [aws_security_group.allow_tls.id]
   key_name               = "th"  # Replace with your key pair name
